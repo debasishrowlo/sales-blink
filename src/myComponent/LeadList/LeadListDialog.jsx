@@ -12,11 +12,14 @@ import {
 import { useState } from "react";
 import SelectList from "./SelectList";
 
-
-export function LeadListDialog({ openSelectList, setOpenSelectList, setSelectedLeadList }) {
-
+export function LeadListDialog({
+  openSelectList, 
+  setOpenSelectList, 
+  setSelectedLeadList,
+  addBlock,
+}) {
   return (
-    <Dialog className="" open={openSelectList} onOpenChange={setOpenSelectList} >
+    <Dialog className="" open={openSelectList} onOpenChange={setOpenSelectList}>
       {/* <DialogTrigger>
       <div className="border hover:bg-slate-200 shadow-md  p-2 rounded-md flex justify-center items-center gap-4" onClick={
           ()=>{
@@ -41,7 +44,7 @@ export function LeadListDialog({ openSelectList, setOpenSelectList, setSelectedL
             </DialogDescription>
           </DialogHeader>
           <div className=""></div>
-          <SelectList setSelectedLeadList={setSelectedLeadList}/>
+          <SelectList setSelectedLeadList={setSelectedLeadList} addBlock={addBlock} />
         </div>
         <div></div>
         <div></div>

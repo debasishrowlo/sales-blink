@@ -23,8 +23,11 @@ import useFlowStore from "@/lib/store/store";
 
 
 
-export function EmailListDialog({ openSelectList, setOpenSelectList,  }) {
-
+export function EmailListDialog({
+  openSelectList, 
+  setOpenSelectList,
+  addBlock,
+}) {
   const selectedEmailTemp = useFlowStore((state) => state.selectedEmailTemp,shallow);
   const currentSelectingEmailAs = useFlowStore((state) => state.currentSelectingEmailAs,shallow);
   const selected = useFlowStore((state) => state.selected,shallow);
@@ -38,6 +41,7 @@ export function EmailListDialog({ openSelectList, setOpenSelectList,  }) {
    })
   
   },[currentSelectingEmailAs,selected]);
+
   const [selectedEmailAs, setSelectedEmailAs] = useState([]);
   const [selectedMailTemp, setSelectedMailTemp] = useState([]);
   
@@ -68,7 +72,7 @@ export function EmailListDialog({ openSelectList, setOpenSelectList,  }) {
           </DialogHeader>
           <div className="mt-10">
           <h1 className="font-bold">Email Template</h1>
-          <SelectEmailTempOptions />
+          <SelectEmailTempOptions addBlock={addBlock} />
           </div>
           <div>
           <h1 className="font-bold">Send Email As</h1>

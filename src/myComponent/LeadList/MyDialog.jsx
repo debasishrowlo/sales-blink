@@ -12,8 +12,7 @@ import {
 import { LeadListDialog } from "./LeadListDialog"
 import { useState } from "react";
 
-
-export function LeadSourceDialog() {
+export function LeadSourceDialog({ addBlock }) {
   const [open, setOpen] = useState(false);
   const [openSelectList, setOpenSelectList] = useState(false);
   return (
@@ -78,7 +77,11 @@ export function LeadSourceDialog() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-      <LeadListDialog openSelectList={openSelectList} setOpenSelectList={setOpenSelectList} />
+      <LeadListDialog
+        openSelectList={openSelectList}
+        setOpenSelectList={setOpenSelectList}
+        addBlock={addBlock}
+      />
     </>
   )
 }

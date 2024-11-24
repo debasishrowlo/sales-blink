@@ -1,6 +1,6 @@
 
 import { Command as CommandPrimitive, useCommandState } from 'cmdk';
-import { X } from 'lucide-react';
+import { X, Mail } from 'lucide-react';
 import * as React from 'react';
 import { forwardRef, useEffect } from 'react';
 
@@ -11,7 +11,8 @@ import { cn } from '@/lib/utils';
 import useFlowStore from '@/lib/store/store';
 import { shallow } from 'zustand/shallow';
 
-
+import CustomBlockNode from '@/myComponent/CustomBlockNode';
+import { nodeStyles } from '@/constant';
 
  function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = React.useState(value);
@@ -93,6 +94,7 @@ CommandEmpty.displayName = 'CommandEmpty';
 const MultipleLeadSelector = React.forwardRef(
   (
     {
+      addBlock,
       value,
       onChange,
       placeholder,
@@ -129,6 +131,7 @@ const MultipleLeadSelector = React.forwardRef(
 
     const selected = useFlowStore((state)=>state.selected,shallow);
     const setSelected = useFlowStore((state)=>state.setSelected);
+
     const [options, setOptions] = React.useState(
       transToGroupOption(arrayDefaultOptions, groupBy),
     );
@@ -141,9 +144,10 @@ const MultipleLeadSelector = React.forwardRef(
         selectedValue: [...selectedLeadList],
         input: inputRef.current ,
         focus: () => inputRef?.current?.focus(),
-        reset: () => {setSelectedLeadList([])
+        reset: () => {
+          setSelectedLeadList([])
           setSelected([])
-        }
+        },
       }),
       [selectedLeadList],
     );
@@ -538,15 +542,28 @@ const MultipleLeadSelector = React.forwardRef(
             </CommandList>
           )}
           {!open && <div className='justify-end flex w-full mt-1 '>
-            <button className='bg-blue-600 p-1 rounded-sm shadow-md text-white font-semibold' onClick={
-              ()=>{
+            <button
+              className='bg-blue-600 p-1 rounded-sm shadow-md text-white font-semibold'
+              onClick={()=>{
                 setSelected([...selectedLeadList])
                 setSelectedLeadList([])
                 onChange?.([]);
-                
-              }
-            
-            }>insert</button>
+
+                let xD = 80
+                let yD = 100
+
+                addBlock({
+                    id: 'ALS-1',
+                    position: { x: xD + 45, y: yD }, // Position new box to the right
+                    data: {
+                        label: (
+                            <CustomBlockNode component={Mail} type="lead" data={selected[0].label} />
+                        ),
+                    },
+                    style: nodeStyles.default,
+                })
+              }}
+            >insert</button>
             </div>}
         </div>
       </Command>

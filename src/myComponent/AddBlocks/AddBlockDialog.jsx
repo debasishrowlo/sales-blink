@@ -18,9 +18,7 @@ import { WaitDialog } from "../Conditions/WaitDialog";
 import useFlowStore from "@/lib/store/store";
 import { shallow } from "zustand/shallow";
 
-
-export function AddBlockDialog() {
-   
+export function AddBlockDialog({ addBlock }) {
     const openAddBlock = useFlowStore((state) => state.openAddBlock,shallow);
     const selectedBlock = useFlowStore((state) => state.selectedBlock,shallow);
     const setOpenAddBlock = useFlowStore((state) => state.setOpenAddBlock);
@@ -28,14 +26,11 @@ export function AddBlockDialog() {
     const [openSelectEmailTempList, setOpenSelectEmailTempList] = useState(false);
     const [showCondition, setShowCondition] = useState(false);
   
-
     return (
         <>
             <Dialog className="" open={openAddBlock} onOpenChange={setOpenAddBlock}>
                 <DialogTrigger asChild>
-
                     <Plus className='text-sky-400' onClick={() => { setOpenAddBlock(true) }} />
-
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[720px] h-[600px] bg-slate-50 ">
                     <div className="border-b border-gray-200 "></div>
@@ -107,7 +102,11 @@ export function AddBlockDialog() {
                 </DialogContent>
             </Dialog>
             <WaitDialog open={openWaitDialog} setOpen={setOpenWaitDialog} />
-            <EmailListDialog openSelectList={openSelectEmailTempList} setOpenSelectList={setOpenSelectEmailTempList} />
+            <EmailListDialog
+                openSelectList={openSelectEmailTempList}
+                setOpenSelectList={setOpenSelectEmailTempList}
+                addBlock={addBlock}
+            />
         </>
     )
 }

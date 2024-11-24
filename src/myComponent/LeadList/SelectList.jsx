@@ -5,7 +5,7 @@ import MultipleLeadSelector from '@/myComponent/LeadList/multiple-selector';
 
 
 
-const SelectList = () => {
+const SelectList = ({ addBlock }) => {
   return (
     <div className="w-full px-10 ">
       <MultipleLeadSelector
@@ -16,6 +16,7 @@ const SelectList = () => {
             no results found.
           </p>
         }
+        addBlock={addBlock} 
       />
     </div>
   );

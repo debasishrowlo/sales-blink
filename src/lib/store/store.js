@@ -9,7 +9,10 @@ const useFlowStore = create((set) => ({
   setSelectedBlock: (newBlock) =>
     set((state) => ({
       ...state,
-      selectedBlock: [...state.selectedBlock, { type: newBlock.type, value: newBlock.value }],
+      selectedBlock: [
+        ...state.selectedBlock, 
+        { type: newBlock.type, value: newBlock.value }
+      ],
     })), // Add newBlock to the selectedBlock array
   setSelectedEmailTemp: (selectedEmailTemp) =>
     set((state) => ({ ...state, selectedEmailTemp })), // Replace the selectedEmailTemp array
